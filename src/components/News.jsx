@@ -10,7 +10,7 @@ const News = ({ pageSize, country, category }) => {
 
     // import FROM env file
     // const apikey = process.env.API_KEY2
-console.log("category",category)
+    console.log("category", category)
 
 
     const NewsApi = async () => {
@@ -19,12 +19,12 @@ console.log("category",category)
 
             if (country === 'in') {
                 if (category === 'general') {
-                    url = `https://newsapi.org/v2/top-headlines?q=india&apiKey=f4068164b86c4de1bff9c382168dc49a&page=${Pages}&pageSize=${pageSize}`
+                    url = `/api/v2/top-headlines?q=india&apiKey=f4068164b86c4de1bff9c382168dc49a&page=${Pages}&pageSize=${pageSize}`
                 } else {
-                    url = `https://newsapi.org/v2/everything?q=india ${category}&sortBy=publishedAt&apiKey=f4068164b86c4de1bff9c382168dc49a&page=${Pages}&pageSize=${pageSize}`
+                    url = `/api/v2/everything?q=india ${category}&sortBy=publishedAt&apiKey=f4068164b86c4de1bff9c382168dc49a&page=${Pages}&pageSize=${pageSize}`
                 }
             } else {
-                url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=f4068164b86c4de1bff9c382168dc49a&page=${Pages}&pageSize=${pageSize}`
+                url = `/api/v2/top-headlines?country=${country}&category=${category}&apiKey=f4068164b86c4de1bff9c382168dc49a&page=${Pages}&pageSize=${pageSize}`
             }
 
             // ✅ THIS IS THE FIX
@@ -44,7 +44,7 @@ console.log("category",category)
         NewsApi();
 
 
-    }, [Pages,category]);
+    }, [Pages, category]);
 
     return (
         <>
@@ -59,7 +59,7 @@ console.log("category",category)
                 {/* Props data              */}
                 {news.map((articles, index) =>
                     <div key={index}>
-                        <NewsItems imgurl={articles.urlToImage} author={articles.author} title={articles.title} content={articles.content} publish={articles.publishedAt} url={articles.url}  newschannel={articles.source.name}/>
+                        <NewsItems imgurl={articles.urlToImage} author={articles.author} title={articles.title} content={articles.content} publish={articles.publishedAt} url={articles.url} newschannel={articles.source.name} />
                     </div>
                 )}
 
